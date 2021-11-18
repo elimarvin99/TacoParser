@@ -28,13 +28,22 @@ namespace LoggingKata
 
             // Grab an IEnumerable of locations using the Select command: var locations = lines.Select(parser.Parse);
             var locations = lines.Select(parser.Parse).ToArray();
+            //foreach (var item in locations)
+            //{
+            //    Console.WriteLine(item.Name);
+            //    Console.WriteLine(item.Location.Longitude);
+            //    Console.WriteLine(item.Location.Latitude);
 
+            //}
             // DON'T FORGET TO LOG YOUR STEPS
 
             // Now that your Parse method is completed, START BELOW ----------
 
             // TODO: Create two `ITrackable` variables with initial values of `null`. These will be used to store your two taco bells that are the farthest from each other.
             // Create a `double` variable to store the distance
+            ITrackable far = null;
+            ITrackable farther = null;
+            double distance = 0.0;
 
             // Include the Geolocation toolbox, so you can compare locations: `using GeoCoordinatePortable;`
 
@@ -49,11 +58,27 @@ namespace LoggingKata
 
             // Now, compare the two using `.GetDistanceTo()`, which returns a double
             // If the distance is greater than the currently saved distance, update the distance and the two `ITrackable` variables you set above
+            for (int i = 0; i < lines.Length; i++)
+            {
+                GeoCoordinate locA = new GeoCoordinate(locations[i].Location.Latitude, locations[i].Location.Longitude);
+                for (int x = 0; x < lines.Length; x++)
+                {
+                    GeoCoordinate locB = new GeoCoordinate(locations[x].Location.Latitude, locations[x].Location.Longitude);
+                    if (locA.GetDistanceTo(locB) > distance)
+                    {
+                        distance = locA.GetDistanceTo(locB);
+                        far = locations[i];
+                        farther = locations[x];
+                    }
+                }
+            }
 
             // Once you've looped through everything, you've found the two Taco Bells farthest away from each other.
-
-
-            
+            Console.WriteLine(far.Name);
+            Console.WriteLine(farther.Name);
+            Console.WriteLine(distance);
         }
+
+       
     }
 }
