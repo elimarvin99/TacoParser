@@ -74,9 +74,12 @@ namespace LoggingKata
             }
 
             // Once you've looped through everything, you've found the two Taco Bells farthest away from each other.
-            Console.WriteLine(far.Name);
-            Console.WriteLine(farther.Name);
-            Console.WriteLine(distance);
+            var miles = Math.Round(distance * 0.00062);
+
+            //Console.WriteLine(far.Name);
+            //Console.WriteLine(farther.Name);
+            //Console.WriteLine(distance);
+            Console.WriteLine($"{far.Name} is {miles} miles away from {farther.Name}.");
         }
 
        
