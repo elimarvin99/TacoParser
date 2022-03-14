@@ -1,0 +1,4 @@
+Would grab list of places provided by user in the UI
+Would parse that into areas of longitude,latitude and location name
+Implement logic to find the fastest route between all places
+Have to iterate through each possible route and determine if there is a shorter route than that. Use a dictionary of itrackables.
